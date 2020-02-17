@@ -1,0 +1,18 @@
+Run a Private Registry Docker
+
+1. Run the resistry image
+  $ docker container run -d -p 5000:5000 --name registry registry
+                                                         --------
+                                                         Image Name
+2. Re-tag an existing image and push into your new registry
+  $ docker tag hello-world 127.0.0.1:5000/hello-world
+  $ docker push 127.0.0.1:5000/hello-world
+  
+3. Rename that image from your local cache and pull it to new registry
+  $ docker image rm hello-world
+  $ docker image rm 127.0.0.1:5000/hello-world
+  $ docker pull 127.0.0.1:5000/hello-world
+  
+4. Re-create registry using a bind mount and see how it stores data
+  $ docker container run -d -p 5000:5000 --name registry -v $(pwd)/registry-data:/var/lib/registry registry
+  
