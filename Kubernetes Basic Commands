@@ -56,5 +56,41 @@ NodePort & LoadBalancer Service
 
 14. Services in same namespaces
   -> kubectl get namespaces
+
+---------------------------------------------------------------------------------------------------------------------------------------
+Run, Create & Expose Generators
+
+15. Dry-Run & output should be in YAML file in generators
+  a) deployment it will show all specs in YAML File
+  -> kubectl create deployment sample --image nginx --dry-run -o yaml
+                                                    --------- -------
+                                                    Run outside cluster; output in yaml
+  b) job it will show specs of pod in YAML File
+  -> kubectl create job sample --image nginx --dry-run -o yaml
   
-15. 
+  c) expose port (first create a deployment in name test)
+  -> kubectl create deployment test --image nginx
+  -> kubectl expose deployment/test --port 80 --dry-run -o yaml
+
+16. Run Generator CMD
+  -> kubectl run test --image nginx --dry-run
+  -> kubectl run test --image nginx --port 80 --expose --dry-run
+  -> kubectl run test --image nginx --restart OnFailure --dry-run
+  -> kubectl run test --image nginx --restart Never --dry-run
+  -> kubectl run test --image nginx --schedule "*/1 * * * *" --dry-run
+
+------------------------------------------------------------------------------------------
+Kubeneters Imperative:
+----------------------
+Examples: kubectl run, kubectl create deployment, kubectl update
+
+Kubeneters Declarative:
+----------------------
+Examples: kubectl applu -f my-resources.yaml
+
+Three management approach
+-------------------------
+Imperative commands: run, expose, scale, edit, create deployment
+Imperative Objects: create -f file.yaml, replace -f file.yaml, delete ...
+Declarative Objects: apply -f file.yaml or dir\, diff
+---------------------------------------------------------------------------------------------------------------------------------------
