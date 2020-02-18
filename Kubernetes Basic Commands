@@ -1,0 +1,34 @@
+1. Kuberctl Version check
+  -> kubectl version
+  
+2. Running a pod of nginx image web server
+  -> kubectl run my-nginx --image nginx
+                 --------
+                 Image Name
+3. Listing the pods 
+  -> kubectl get pods
+  
+  a) Watch a cmd (without needing watch cmd)
+  -> kubectl get pods -w
+  
+4. See all objects
+  -> kubectl get all
+  
+5. Remove the Deployment
+  -> kubectl delete deployment my-nginx
+  
+6. Scaling up with another pod (both cmds are same)
+  -> kubectl scale deploy/my-nginx --replicas 2
+  (or)
+  -> kubectl scale deployment my-nginx --replicas 2
+  
+7. Get Container logs
+  -> kubectl logs deployment/my-nginx
+  expande cmd
+  -> kubectl logs deployment/my-nginx --follow --tail 1
+  
+8. Get a bunch of details about an object, including events
+  -> kubectl describe pod/my-nginx-xxxx-yyyy (pod name)
+  
+9. Deleting a pod
+  -> kubectl delete pod/(pod name)
