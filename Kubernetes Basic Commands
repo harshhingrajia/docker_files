@@ -14,8 +14,12 @@
 4. See all objects
   -> kubectl get all
   
-5. Remove the Deployment
-  -> kubectl delete deployment my-nginx
+5. Remove the Deployment & service
+  -> kubectl delete deployment/my-nginx
+  
+  -> kubectl delete service/nginxenv-lb service/nginxenv
+  (or)
+  -> kubectl delete service/nginxenv-lb deployment/nginxenv
   
 6. Scaling up with another pod (both cmds are same)
   -> kubectl scale deploy/my-nginx --replicas 2
@@ -32,3 +36,25 @@
   
 9. Deleting a pod
   -> kubectl delete pod/(pod name)
+---------------------------------------------------------------------------------------------------------------------------------------
+Exposing
+
+10. To expose the port
+  -> kubectl expose deployment/my-nginx --port 8888
+  
+11. To look what IP is allocated
+  -> kubectl get service
+  
+---------------------------------------------------------------------------------------------------------------------------------------
+NodePort & LoadBalancer Service
+
+12. Exposing a NodePort
+  -> kubectl expose deployment/my-nginx --port 8888 --name nginxenv-np --type NodePort
+
+13. Exposing a ElasticBalancer
+  -> kubectl expose deployment/my-nginx --port 8888 --name nginxenv-lb --type LoadBalancer
+
+14. Services in same namespaces
+  -> kubectl get namespaces
+  
+15. 
