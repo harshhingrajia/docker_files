@@ -1,0 +1,59 @@
+Build your YAML Files
+--------------------
+1. apiVersion: Get the api version from
+  -> kubectl api-versions
+
+2. kind: get list of resources from
+  -> kubectl api-resources
+
+3. metadata: only name field is required
+4. spec: where all the action takes place!!
+
+Build your YAML Spec
+--------------------
+1. We can get all the keys each kind support
+  -> kubectl explain services --recursive
+  
+2. All the Service Specs
+  -> kubectl explain services.spec
+
+3. Furthur about specs in detail
+  -> kubectl explain services.spec.type
+
+4. spec: can have sub spec: of other resources
+  -> kubectl explain deployment.spec.template.spec.volumes.nfs.server
+
+5. Docs references
+  -> kubernetes.io/docs/reference/#api-reference
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+Dry Runs with Apply YAML
+------------------------
+
+1. dry-run a create (client side only)
+  -> kubectl apply -f app.yml --dry-run
+
+2. dry-run a create/update on server
+  -> kubectl apply -f app.yml --server-dry-run
+
+3. see a difference b/w on server and yaml
+  -> kubectl diff -f app.yml
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+Lables and Annotations
+---------------------
+
+1. Lables goes under metadata:
+2. Common examples: 
+  a. key: value
+  b. tier: frontend
+  c. app: api
+  d. env: prod
+  d. customer: acme.co
+3. filter a get command
+  -> kubectl get pods -l app=nginx
+4. apply only matching lables
+  -> kubectl apply -f myfile.yml -l app=nginx
+
